@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MonashBnBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MonashBnBModelStoreContainer">
+    <EntitySet Name="Hotels" EntityType="MonashBnBModel.Store.Hotels" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rooms" EntityType="MonashBnBModel.Store.Rooms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="MonashBnBModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ratings" EntityType="MonashBnBModel.Store.Ratings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Reservations1" EntityType="MonashBnBModel.Store.Reservations1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HotelImages" EntityType="MonashBnBModel.Store.HotelImages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoomTypes" EntityType="MonashBnBModel.Store.RoomTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FavLists" EntityType="MonashBnBModel.Store.FavLists" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="HotelRoom" Association="MonashBnBModel.Store.HotelRoom">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="UserRating" Association="MonashBnBModel.Store.UserRating">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="UserReservations" Association="MonashBnBModel.Store.UserReservations">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Reservations" EntitySet="Reservations1" />
+    </AssociationSet>
+    <AssociationSet Name="HotelReservations" Association="MonashBnBModel.Store.HotelReservations">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Reservations" EntitySet="Reservations1" />
+    </AssociationSet>
+    <AssociationSet Name="HotelHotelImage" Association="MonashBnBModel.Store.HotelHotelImage">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="HotelImage" EntitySet="HotelImages" />
+    </AssociationSet>
+    <AssociationSet Name="RoomRoomType" Association="MonashBnBModel.Store.RoomRoomType">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="RoomType" EntitySet="RoomTypes" />
+    </AssociationSet>
+    <AssociationSet Name="HotelRating" Association="MonashBnBModel.Store.HotelRating">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="UserFavList" Association="MonashBnBModel.Store.UserFavList">
+      <End Role="User" EntitySet="Users" />
+      <End Role="FavList" EntitySet="FavLists" />
+    </AssociationSet>
+    <AssociationSet Name="FavListHotel" Association="MonashBnBModel.Store.FavListHotel">
+      <End Role="FavList" EntitySet="FavLists" />
+      <End Role="Hotel" EntitySet="Hotels" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Hotels">
+    <Key>
+      <PropertyRef Name="hotelId" />
+    </Key>
+    <Property Name="hotelId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hotelName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="hotelAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="hotelDesc" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="hotelAmenties" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="hotelImage" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="hotelLongitude" Type="decimal" Nullable="true" />
+    <Property Name="hotelLatitude" Type="decimal" Nullable="true" />
+    <Property Name="FavList_favListId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="roomId" />
+    </Key>
+    <Property Name="roomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roomTypeId" Type="int" Nullable="false" />
+    <Property Name="roomPricePerNight" Type="float" Nullable="false" />
+    <Property Name="roomAvailability" Type="smallint" Nullable="false" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+    <Property Name="RoomType_roomTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userEmail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="userType" Type="bit" Nullable="false" />
+    <Property Name="userPassword" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="userFirstName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="userLastName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="favListId" Type="smallint" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Ratings">
+    <Key>
+      <PropertyRef Name="ratingId" />
+    </Key>
+    <Property Name="ratingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ratingComment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ratingStar" Type="smallint" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="hotelId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservations1">
+    <Key>
+      <PropertyRef Name="resevNo" />
+    </Key>
+    <Property Name="resevNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="resevCheckIn" Type="datetime" Nullable="false" />
+    <Property Name="resevCheckOut" Type="datetime" Nullable="false" />
+    <Property Name="resevPrice" Type="float" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+    <Property Name="hotelId" Type="int" Nullable="false" />
+    <Property Name="Hotel_hotelId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HotelImages">
+    <Key>
+      <PropertyRef Name="imageId" />
+    </Key>
+    <Property Name="imageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="image" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="hotelId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoomTypes">
+    <Key>
+      <PropertyRef Name="roomTypeId" />
+    </Key>
+    <Property Name="roomTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roomTypeBedCount" Type="smallint" Nullable="false" />
+    <Property Name="roomTypeBedroomCount" Type="smallint" Nullable="false" />
+    <Property Name="roomTypeBathCount" Type="smallint" Nullable="false" />
+    <Property Name="roomTypeAccomodateCount" Type="smallint" Nullable="false" />
+    <Property Name="roomTypeName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FavLists">
+    <Key>
+      <PropertyRef Name="favListId" />
+    </Key>
+    <Property Name="favListId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="hotelId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="User_userId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="HotelRoom">
+    <End Role="Hotel" Type="MonashBnBModel.Store.Hotels" Multiplicity="1" />
+    <End Role="Room" Type="MonashBnBModel.Store.Rooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="hotelId" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserRating">
+    <End Role="User" Type="MonashBnBModel.Store.Users" Multiplicity="1" />
+    <End Role="Rating" Type="MonashBnBModel.Store.Ratings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserReservations">
+    <End Role="User" Type="MonashBnBModel.Store.Users" Multiplicity="1" />
+    <End Role="Reservations" Type="MonashBnBModel.Store.Reservations1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HotelReservations">
+    <End Role="Hotel" Type="MonashBnBModel.Store.Hotels" Multiplicity="1" />
+    <End Role="Reservations" Type="MonashBnBModel.Store.Reservations1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="hotelId" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="Hotel_hotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HotelHotelImage">
+    <End Role="Hotel" Type="MonashBnBModel.Store.Hotels" Multiplicity="1" />
+    <End Role="HotelImage" Type="MonashBnBModel.Store.HotelImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="hotelId" />
+      </Principal>
+      <Dependent Role="HotelImage">
+        <PropertyRef Name="hotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoomRoomType">
+    <End Role="Room" Type="MonashBnBModel.Store.Rooms" Multiplicity="*" />
+    <End Role="RoomType" Type="MonashBnBModel.Store.RoomTypes" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="RoomType">
+        <PropertyRef Name="roomTypeId" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="RoomType_roomTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HotelRating">
+    <End Role="Hotel" Type="MonashBnBModel.Store.Hotels" Multiplicity="1" />
+    <End Role="Rating" Type="MonashBnBModel.Store.Ratings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="hotelId" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="hotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserFavList">
+    <End Role="User" Type="MonashBnBModel.Store.Users" Multiplicity="1" />
+    <End Role="FavList" Type="MonashBnBModel.Store.FavLists" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="FavList">
+        <PropertyRef Name="User_userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FavListHotel">
+    <End Role="FavList" Type="MonashBnBModel.Store.FavLists" Multiplicity="1" />
+    <End Role="Hotel" Type="MonashBnBModel.Store.Hotels" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FavList">
+        <PropertyRef Name="favListId" />
+      </Principal>
+      <Dependent Role="Hotel">
+        <PropertyRef Name="FavList_favListId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="MonashBnBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="MonashBnBModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Hotels" EntityType="MonashBnBModel.Hotel" />
+          <EntitySet Name="Rooms" EntityType="MonashBnBModel.Room" />
+          <AssociationSet Name="HotelRoom" Association="MonashBnBModel.HotelRoom">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="MonashBnBModel.User" />
+          <EntitySet Name="Ratings" EntityType="MonashBnBModel.Rating" />
+          <EntitySet Name="Reservations1" EntityType="MonashBnBModel.Reservations" />
+          <EntitySet Name="HotelImages" EntityType="MonashBnBModel.HotelImage" />
+          <EntitySet Name="RoomTypes" EntityType="MonashBnBModel.RoomType" />
+          <AssociationSet Name="UserRating" Association="MonashBnBModel.UserRating">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="UserReservations" Association="MonashBnBModel.UserReservations">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Reservations" EntitySet="Reservations1" />
+          </AssociationSet>
+          <AssociationSet Name="HotelReservations" Association="MonashBnBModel.HotelReservations">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="Reservations" EntitySet="Reservations1" />
+          </AssociationSet>
+          <AssociationSet Name="HotelHotelImage" Association="MonashBnBModel.HotelHotelImage">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="HotelImage" EntitySet="HotelImages" />
+          </AssociationSet>
+          <AssociationSet Name="RoomRoomType" Association="MonashBnBModel.RoomRoomType">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="RoomType" EntitySet="RoomTypes" />
+          </AssociationSet>
+          <AssociationSet Name="HotelRating" Association="MonashBnBModel.HotelRating">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+          <EntitySet Name="FavLists" EntityType="MonashBnBModel.FavList" />
+          <AssociationSet Name="UserFavList" Association="MonashBnBModel.UserFavList">
+            <End Role="User" EntitySet="Users" />
+            <End Role="FavList" EntitySet="FavLists" />
+          </AssociationSet>
+          <AssociationSet Name="FavListHotel" Association="MonashBnBModel.FavListHotel">
+            <End Role="FavList" EntitySet="FavLists" />
+            <End Role="Hotel" EntitySet="Hotels" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="hotelId" />
+          </Key>
+          <Property Name="hotelId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hotelName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="hotelAddress" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="hotelDesc" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="hotelAmenties" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="hotelImage" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="hotelLongitude" Type="Decimal" Nullable="true" />
+          <Property Name="hotelLatitude" Type="Decimal" Nullable="true" />
+          <NavigationProperty Name="Rooms" Relationship="MonashBnBModel.HotelRoom" FromRole="Hotel" ToRole="Room" />
+          <NavigationProperty Name="Reservation" Relationship="MonashBnBModel.HotelReservations" FromRole="Hotel" ToRole="Reservations" />
+          <NavigationProperty Name="HotelImages" Relationship="MonashBnBModel.HotelHotelImage" FromRole="Hotel" ToRole="HotelImage" />
+          <NavigationProperty Name="Ratings" Relationship="MonashBnBModel.HotelRating" FromRole="Hotel" ToRole="Rating" />
+          <NavigationProperty Name="FavList" Relationship="MonashBnBModel.FavListHotel" FromRole="Hotel" ToRole="FavList" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="roomId" />
+          </Key>
+          <Property Name="roomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roomTypeId" Type="Int32" Nullable="false" />
+          <Property Name="roomPricePerNight" Type="Double" Nullable="false" />
+          <Property Name="roomAvailability" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Hotel" Relationship="MonashBnBModel.HotelRoom" FromRole="Room" ToRole="Hotel" />
+          <Property Name="HotelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RoomType" Relationship="MonashBnBModel.RoomRoomType" FromRole="Room" ToRole="RoomType" />
+        </EntityType>
+        <Association Name="HotelRoom">
+          <End Type="MonashBnBModel.Hotel" Role="Hotel" Multiplicity="1" />
+          <End Type="MonashBnBModel.Room" Role="Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="hotelId" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userEmail" Type="String" Nullable="false" />
+          <Property Name="userType" Type="Boolean" Nullable="false" />
+          <Property Name="userPassword" Type="String" Nullable="false" />
+          <Property Name="userFirstName" Type="String" Nullable="true" />
+          <Property Name="userLastName" Type="String" Nullable="true" />
+          <Property Name="favListId" Type="Int16" Nullable="true" />
+          <NavigationProperty Name="Ratings" Relationship="MonashBnBModel.UserRating" FromRole="User" ToRole="Rating" />
+          <NavigationProperty Name="Reservations" Relationship="MonashBnBModel.UserReservations" FromRole="User" ToRole="Reservations" />
+          <NavigationProperty Name="FavList" Relationship="MonashBnBModel.UserFavList" FromRole="User" ToRole="FavList" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="ratingId" />
+          </Key>
+          <Property Name="ratingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ratingComment" Type="String" Nullable="false" />
+          <Property Name="ratingStar" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="MonashBnBModel.UserRating" FromRole="Rating" ToRole="User" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hotel" Relationship="MonashBnBModel.HotelRating" FromRole="Rating" ToRole="Hotel" />
+          <Property Name="hotelId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="resevNo" />
+          </Key>
+          <Property Name="resevNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="resevCheckIn" Type="DateTime" Nullable="false" />
+          <Property Name="resevCheckOut" Type="DateTime" Nullable="false" />
+          <Property Name="resevPrice" Type="Double" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="MonashBnBModel.UserReservations" FromRole="Reservations" ToRole="User" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="hotelId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hotel" Relationship="MonashBnBModel.HotelReservations" FromRole="Reservations" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="HotelImage">
+          <Key>
+            <PropertyRef Name="imageId" />
+          </Key>
+          <Property Name="imageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image" Type="String" Nullable="false" />
+          <NavigationProperty Name="Hotel" Relationship="MonashBnBModel.HotelHotelImage" FromRole="HotelImage" ToRole="Hotel" />
+          <Property Name="hotelId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoomType">
+          <Key>
+            <PropertyRef Name="roomTypeId" />
+          </Key>
+          <Property Name="roomTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roomTypeBedCount" Type="Int16" Nullable="false" />
+          <Property Name="roomTypeBedroomCount" Type="Int16" Nullable="false" />
+          <Property Name="roomTypeBathCount" Type="Int16" Nullable="false" />
+          <Property Name="roomTypeAccomodateCount" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Room" Relationship="MonashBnBModel.RoomRoomType" FromRole="RoomType" ToRole="Room" />
+          <Property Name="roomTypeName" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="UserRating">
+          <End Type="MonashBnBModel.User" Role="User" Multiplicity="1" />
+          <End Type="MonashBnBModel.Rating" Role="Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserReservations">
+          <End Type="MonashBnBModel.User" Role="User" Multiplicity="1" />
+          <End Type="MonashBnBModel.Reservations" Role="Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HotelReservations">
+          <End Type="MonashBnBModel.Hotel" Role="Hotel" Multiplicity="1" />
+          <End Type="MonashBnBModel.Reservations" Role="Reservations" Multiplicity="*" />
+        </Association>
+        <Association Name="HotelHotelImage">
+          <End Type="MonashBnBModel.Hotel" Role="Hotel" Multiplicity="1" />
+          <End Type="MonashBnBModel.HotelImage" Role="HotelImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="hotelId" />
+            </Principal>
+            <Dependent Role="HotelImage">
+              <PropertyRef Name="hotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoomRoomType">
+          <End Type="MonashBnBModel.Room" Role="Room" Multiplicity="1" />
+          <End Type="MonashBnBModel.RoomType" Role="RoomType" Multiplicity="1" />
+        </Association>
+        <Association Name="HotelRating">
+          <End Type="MonashBnBModel.Hotel" Role="Hotel" Multiplicity="1" />
+          <End Type="MonashBnBModel.Rating" Role="Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="hotelId" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="hotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FavList">
+          <Key>
+            <PropertyRef Name="favListId" />
+          </Key>
+          <Property Name="favListId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="User" Relationship="MonashBnBModel.UserFavList" FromRole="FavList" ToRole="User" />
+          <NavigationProperty Name="Hotels" Relationship="MonashBnBModel.FavListHotel" FromRole="FavList" ToRole="Hotel" />
+          <Property Name="userId" Type="String" Nullable="false" />
+          <Property Name="hotelId" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="UserFavList">
+          <End Type="MonashBnBModel.User" Role="User" Multiplicity="1" />
+          <End Type="MonashBnBModel.FavList" Role="FavList" Multiplicity="0..1" />
+        </Association>
+        <Association Name="FavListHotel">
+          <End Type="MonashBnBModel.FavList" Role="FavList" Multiplicity="1" />
+          <End Type="MonashBnBModel.Hotel" Role="Hotel" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MonashBnBModelStoreContainer" CdmEntityContainer="MonashBnBModelContainer">
+    <EntitySetMapping Name="Hotels">
+      <EntityTypeMapping TypeName="IsTypeOf(MonashBnBModel.Hotel)">
+        <MappingFragment StoreEntitySet="Hotels">
+          <ScalarProperty Name="hotelId" ColumnName="hotelId" />
+          <ScalarProperty Name="hotelName" ColumnName="hotelName" />
+          <ScalarProperty Name="hotelAddress" ColumnName="hotelAddress" />
+          <ScalarProperty Name="hotelDesc" ColumnName="hotelDesc" />
+          <ScalarProperty Name="hotelAmenties" ColumnName="hotelAmenties" />
+          <ScalarProperty Name="hotelImage" ColumnName="hotelImage" />
+          <ScalarProperty Name="hotelLongitude" ColumnName="hotelLongitude" />
+          <ScalarProperty Name="hotelLatitude" ColumnName="hotelLatitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="IsTypeOf(MonashBnBModel.Room)">
+        <MappingFragment StoreEntitySet="Rooms">
+          <ScalarProperty Name="roomId" ColumnName="roomId" />
+          <ScalarProperty Name="roomTypeId" ColumnName="roomTypeId" />
+          <ScalarProperty Name="roomPricePerNight" ColumnName="roomPricePerNight" />
+          <ScalarProperty Name="roomAvailability" ColumnName="roomAvailability" />
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(MonashBnBModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+          <ScalarProperty Name="userType" ColumnName="userType" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="userFirstName" ColumnName="userFirstName" />
+          <ScalarProperty Name="userLastName" ColumnName="userLastName" />
+          <ScalarProperty Name="favListId" ColumnName="favListId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="IsTypeOf(MonashBnBModel.Rating)">
+        <MappingFragment StoreEntitySet="Ratings">
+          <ScalarProperty Name="ratingId" ColumnName="ratingId" />
+          <ScalarProperty Name="ratingComment" ColumnName="ratingComment" />
+          <ScalarProperty Name="ratingStar" ColumnName="ratingStar" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="hotelId" ColumnName="hotelId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservations1">
+      <EntityTypeMapping TypeName="IsTypeOf(MonashBnBModel.Reservations)">
+        <MappingFragment StoreEntitySet="Reservations1">
+          <ScalarProperty Name="resevNo" ColumnName="resevNo" />
+          <ScalarProperty Name="resevCheckIn" ColumnName="resevCheckIn" />
+          <ScalarProperty Name="resevCheckOut" ColumnName="resevCheckOut" />
+          <ScalarProperty Name="resevPrice" ColumnName="resevPrice" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="hotelId" ColumnName="hotelId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HotelImages">
+      <EntityTypeMapping TypeName="IsTypeOf(MonashBnBModel.HotelImage)">
+        <MappingFragment StoreEntitySet="HotelImages">
+          <ScalarProperty Name="imageId" ColumnName="imageId" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="hotelId" ColumnName="hotelId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoomTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(MonashBnBModel.RoomType)">
+        <MappingFragment StoreEntitySet="RoomTypes">
+          <ScalarProperty Name="roomTypeId" ColumnName="roomTypeId" />
+          <ScalarProperty Name="roomTypeBedCount" ColumnName="roomTypeBedCount" />
+          <ScalarProperty Name="roomTypeBedroomCount" ColumnName="roomTypeBedroomCount" />
+          <ScalarProperty Name="roomTypeBathCount" ColumnName="roomTypeBathCount" />
+          <ScalarProperty Name="roomTypeAccomodateCount" ColumnName="roomTypeAccomodateCount" />
+          <ScalarProperty Name="roomTypeName" ColumnName="roomTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FavLists">
+      <EntityTypeMapping TypeName="IsTypeOf(MonashBnBModel.FavList)">
+        <MappingFragment StoreEntitySet="FavLists">
+          <ScalarProperty Name="favListId" ColumnName="favListId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="hotelId" ColumnName="hotelId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="HotelReservations" TypeName="MonashBnBModel.HotelReservations" StoreEntitySet="Reservations1">
+      <EndProperty Name="Hotel">
+        <ScalarProperty Name="hotelId" ColumnName="Hotel_hotelId" />
+      </EndProperty>
+      <EndProperty Name="Reservations">
+        <ScalarProperty Name="resevNo" ColumnName="resevNo" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RoomRoomType" TypeName="MonashBnBModel.RoomRoomType" StoreEntitySet="Rooms">
+      <EndProperty Name="RoomType">
+        <ScalarProperty Name="roomTypeId" ColumnName="RoomType_roomTypeId" />
+      </EndProperty>
+      <EndProperty Name="Room">
+        <ScalarProperty Name="roomId" ColumnName="roomId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserFavList" TypeName="MonashBnBModel.UserFavList" StoreEntitySet="FavLists">
+      <EndProperty Name="User">
+        <ScalarProperty Name="userId" ColumnName="User_userId" />
+      </EndProperty>
+      <EndProperty Name="FavList">
+        <ScalarProperty Name="favListId" ColumnName="favListId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FavListHotel" TypeName="MonashBnBModel.FavListHotel" StoreEntitySet="Hotels">
+      <EndProperty Name="FavList">
+        <ScalarProperty Name="favListId" ColumnName="FavList_favListId" />
+      </EndProperty>
+      <EndProperty Name="Hotel">
+        <ScalarProperty Name="hotelId" ColumnName="hotelId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

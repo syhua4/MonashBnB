@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2391f9deeaba4defb12278f0313bbecd" Name="Diagram1" ZoomLevel="55" DisplayType="true" >
+        <EntityTypeShape EntityType="MonashBnBModel.Hotel" Width="2" PointX="4.875" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonashBnBModel.Room" Width="2.125" PointX="8" PointY="13.125" IsExpanded="true" />
+        <AssociationConnector Association="MonashBnBModel.HotelRoom" />
+        <EntityTypeShape EntityType="MonashBnBModel.User" Width="2.625" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonashBnBModel.Rating" Width="1.5" PointX="8" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonashBnBModel.Reservations" Width="2.125" PointX="11" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonashBnBModel.HotelImage" Width="1.5" PointX="8" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="MonashBnBModel.RoomType" Width="2.75" PointX="10.875" PointY="13.5" IsExpanded="true" />
+        <AssociationConnector Association="MonashBnBModel.UserRating" />
+        <AssociationConnector Association="MonashBnBModel.UserReservations" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="MonashBnBModel.HotelReservations" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="MonashBnBModel.HotelHotelImage" />
+        <AssociationConnector Association="MonashBnBModel.RoomRoomType" />
+        <AssociationConnector Association="MonashBnBModel.HotelRating" />
+        <EntityTypeShape EntityType="MonashBnBModel.FavList" Width="1.5" PointX="2.25" PointY="11" IsExpanded="true" />
+        <AssociationConnector Association="MonashBnBModel.UserFavList" />
+        <AssociationConnector Association="MonashBnBModel.FavListHotel" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

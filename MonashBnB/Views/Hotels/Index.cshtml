@@ -1,0 +1,392 @@
+﻿@model IEnumerable<MonashBnB.Models.Hotel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+
+}
+<style>
+    body {
+        background-image: url(https://i.pinimg.com/originals/ef/7f/b1/ef7fb1b37078b6a2aef8e40710446bfa.jpg);
+    }
+    .input-group {
+  text-align: center;
+}
+    .col-md-4{
+        margin: 35px 10px 0px 10px;
+        padding: 50px;
+        border: solid;
+        border-color: rgba(0, 0, 0, 0.075);
+        border-radius: 10px;
+        box-shadow: 3px 3px 5px #777777cf;
+        background-color: rgba(0, 0, 0, 0.175);
+    }
+
+    .col-md-7 {
+        margin: 35px 10px 0px 10px;
+        padding-top:20px;
+        padding-bottom:20px;
+        background-color: rgba(0, 0, 0, 0.175);
+        border: solid;
+        border-color: rgba(0, 0, 0, 0.075);
+        border-radius: 10px;
+        box-shadow: 3px 3px 5px #777777cf;
+    }
+
+    h2 {
+        font-weight: 800;
+        font-size: 40px;
+        line-height: 1.3;
+        margin-bottom: 30px;
+        font-family: 'Lobster', cursive;
+        text-shadow: 2px 2px 2px white;
+    }
+
+    .input-group {
+        margin-bottom: 10px;
+    }
+
+    img {
+        border: 3px;
+        border-radius: 2px;
+    }
+
+    label1 {
+        font-size: 40px;
+        font-weight: 800;
+        font-family: 'Lobster', cursive;
+        font-size: 40px;
+        text-shadow: 2px 2px 2px white;
+        padding-top:80px;
+    }
+
+    .carousel-inner {
+        padding: 5px;
+        margin-top: 15px;
+    }
+</style>
+
+<div class="container1">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Book unique places to stay...</h2>
+            <form>
+                <label for="destination">Destination:</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-bed"></span>
+                    </div>
+                    <input id="destination" type="search" class="form-control" placeholder="Where are you going?   " autocomplete="on">
+                </div>
+
+                <label for="checkInDate">Check In:</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+                    <input id="checkInDate" type="date" class="form-control">
+                </div>
+
+                <label for="checkOutDate">Check Out:</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+                    <input id="checkOutDate" type="date" class="form-control">
+                </div>
+
+                <label for="guestNo">Number of Guests:</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-user"></span>
+                    </div>
+                    <input id="guestNo" type="number" class="form-control">
+                </div>
+
+                <label for="roomNo">Number of Rooms:</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-home"></span>
+                    </div>
+                    <input id="roomNo" type="number" class="form-control">
+                </div>
+                <br />
+                <button type="submit" class="form-control btn-info">Search</button>
+            </form>
+        </div>
+        <div class="col-md-7">
+            <label1 id="label1">Top Rated Hotels</label1>
+            <div id="imageCarousel" class="carousel slide" data-interval="3500"
+                 data-ride="carousel" data-pause="hover" data-wrap="true">
+
+                <ol class="carousel-indicators">
+                    <li data-target="#imageCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#imageCarousel" data-slide-to="1"></li>
+                    <li data-target="#imageCarousel" data-slide-to="2"></li>
+                </ol>
+
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/184256083.webp?k=8be9a4e493a22d9006abd8a5b1aff269124b00f7e086fe4d8005cc4c4b39193c&o=" class="img-responsive">
+                            </div>
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/211616334.webp?k=236697389c0e6fff4f64c5b2899cf62575924ffd40ed2f49cc71b1fc43797956&o=" class="img-responsive">
+
+                            </div>
+                            <div class="col-xs-4">
+                                <img src="https://q-cf.bstatic.com/xdata/images/hotel/square600/54203390.webp?k=1007c80fef135e4c2c8084787f1b526e6404c0172b4ecf9608c82ed87e4ce0ba&o" class="img-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/21895078.webp?k=12e859276b64dedf347f5b9a23ebfd4ee8f47bd801517269c11f1a93e1652b17&o=" class="img-responsive">
+
+                            </div>
+                            <div class="col-xs-4">
+                                <img src="https://q-cf.bstatic.com/xdata/images/hotel/square600/117865119.webp?k=9e7259775f928429241b2f5f4b54e15ff226ade2f441f1b82369450650e7a59d&o=" class="img-responsive">
+
+                            </div>
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/156261261.webp?k=ed14f5d5d6c949f54a0f39d4760d28e7d09e9d15a5ddb60c2cf47a80d70b28d9&o=" class="img-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/188889081.webp?k=a7deeff273df631b0d97c467870b531ed749225b606ad4961543daa012f1a87b&o=" class="img-responsive">
+
+                            </div>
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/117063695.webp?k=edc4c2764bbdaf16f9f96064559751fc7ad3c1a490c258c51a1af3d4368cec62&o=" class="img-responsive">
+
+                            </div>
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/185345796.webp?k=3bb43910fd64b4d00e4c739fd5f3a064d94e5d4416f36c155bb608de7774baae&o=" class="img-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#imageCarousel" class="carousel-control left" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a href="#imageCarousel" class="carousel-control right" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <label1 id="label1">Best Valued Hotels</label1>
+            <div id="imageCarousel" class="carousel slide" data-interval="3500"
+                 data-ride="carousel" data-pause="hover" data-wrap="true">
+
+                <ol class="carousel-indicators">
+                    <li data-target="#imageCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#imageCarousel" data-slide-to="1"></li>
+                    <li data-target="#imageCarousel" data-slide-to="2"></li>
+                </ol>
+
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/184256083.webp?k=8be9a4e493a22d9006abd8a5b1aff269124b00f7e086fe4d8005cc4c4b39193c&o=" class="img-responsive">
+                            </div>
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/211616334.webp?k=236697389c0e6fff4f64c5b2899cf62575924ffd40ed2f49cc71b1fc43797956&o=" class="img-responsive">
+
+                            </div>
+                            <div class="col-xs-4">
+                                <img src="https://q-cf.bstatic.com/xdata/images/hotel/square600/54203390.webp?k=1007c80fef135e4c2c8084787f1b526e6404c0172b4ecf9608c82ed87e4ce0ba&o" class="img-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/21895078.webp?k=12e859276b64dedf347f5b9a23ebfd4ee8f47bd801517269c11f1a93e1652b17&o=" class="img-responsive">
+
+                            </div>
+                            <div class="col-xs-4">
+                                <img src="https://q-cf.bstatic.com/xdata/images/hotel/square600/117865119.webp?k=9e7259775f928429241b2f5f4b54e15ff226ade2f441f1b82369450650e7a59d&o=" class="img-responsive">
+
+                            </div>
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/156261261.webp?k=ed14f5d5d6c949f54a0f39d4760d28e7d09e9d15a5ddb60c2cf47a80d70b28d9&o=" class="img-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/188889081.webp?k=a7deeff273df631b0d97c467870b531ed749225b606ad4961543daa012f1a87b&o=" class="img-responsive">
+
+                            </div>
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/117063695.webp?k=edc4c2764bbdaf16f9f96064559751fc7ad3c1a490c258c51a1af3d4368cec62&o=" class="img-responsive">
+
+                            </div>
+                            <div class="col-xs-4">
+                                <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/185345796.webp?k=3bb43910fd64b4d00e4c739fd5f3a064d94e5d4416f36c155bb608de7774baae&o=" class="img-responsive">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#imageCarousel" class="carousel-control left" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a href="#imageCarousel" class="carousel-control right" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<div class="container1 col-sm-12">
+    <div class="row">
+
+
+        <div class="container1 col-sm-12">
+            <div class="row">
+                <div class="col-xs-12">
+                    <label1 id="label1">Best Valued Hotels</label1>
+                    <div id="imageCarousel" class="carousel slide" data-interval="3500"
+                         data-ride="carousel" data-pause="hover" data-wrap="true">
+
+                        <ol class="carousel-indicators">
+                            <li data-target="#imageCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#imageCarousel" data-slide-to="1"></li>
+                            <li data-target="#imageCarousel" data-slide-to="2"></li>
+                        </ol>
+
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/184256083.webp?k=8be9a4e493a22d9006abd8a5b1aff269124b00f7e086fe4d8005cc4c4b39193c&o=" class="img-responsive">
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/211616334.webp?k=236697389c0e6fff4f64c5b2899cf62575924ffd40ed2f49cc71b1fc43797956&o=" class="img-responsive">
+
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <img src="https://q-cf.bstatic.com/xdata/images/hotel/square600/54203390.webp?k=1007c80fef135e4c2c8084787f1b526e6404c0172b4ecf9608c82ed87e4ce0ba&o" class="img-responsive">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/21895078.webp?k=12e859276b64dedf347f5b9a23ebfd4ee8f47bd801517269c11f1a93e1652b17&o=" class="img-responsive">
+
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <img src="https://q-cf.bstatic.com/xdata/images/hotel/square600/117865119.webp?k=9e7259775f928429241b2f5f4b54e15ff226ade2f441f1b82369450650e7a59d&o=" class="img-responsive">
+
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/156261261.webp?k=ed14f5d5d6c949f54a0f39d4760d28e7d09e9d15a5ddb60c2cf47a80d70b28d9&o=" class="img-responsive">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/188889081.webp?k=a7deeff273df631b0d97c467870b531ed749225b606ad4961543daa012f1a87b&o=" class="img-responsive">
+
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/117063695.webp?k=edc4c2764bbdaf16f9f96064559751fc7ad3c1a490c258c51a1af3d4368cec62&o=" class="img-responsive">
+
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <img src="https://r-cf.bstatic.com/xdata/images/hotel/square600/185345796.webp?k=3bb43910fd64b4d00e4c739fd5f3a064d94e5d4416f36c155bb608de7774baae&o=" class="img-responsive">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#imageCarousel" class="carousel-control left" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a href="#imageCarousel" class="carousel-control right" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.hotelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hotelAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hotelDesc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hotelAmenties)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hotelPhoto)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.hotelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hotelAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hotelDesc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hotelAmenties)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hotelPhoto)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.hotelId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.hotelId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.hotelId })
+            </td>
+        </tr>
+    }
+
+    </table>*@
